@@ -5,7 +5,10 @@ pygame.init()
 screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Nyan Cat')
 clock = pygame.time.Clock()
-
+# Music
+pygame.mixer.init()
+pygame.mixer.music.load('nyan_cat_music.mp3')
+pygame.mixer.music.play()
 # Lines Color
 surface = (30, 15)
 pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0
