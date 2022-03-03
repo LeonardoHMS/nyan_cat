@@ -7,39 +7,23 @@ pygame.display.set_caption('Nyan Cat')
 
 # Lines Color
 surface = (15, 15)
-pos_black_1 = (225, 230)
-pos_red = (240, 245)
-pos_orange = (255, 260)
-pos_yellow = (270, 275)
-pos_green = (285, 290)
-pos_blue = (300, 305)
-pos_violet = (315, 320)
-pos_black_2 = (330, 335)
-loop = 0
+pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0
 while True:
     if loop % 2 == 0:
-        pos_black_1 = (225, 230)
-        pos_red = (240, 250)
+        pos_red = (240, 245)
         pos_orange = (255, 260)
         pos_yellow = (270, 275)
         pos_green = (285, 290)
         pos_blue = (300, 305)
         pos_violet = (315, 320)
-        pos_black_2 = (330, 335)
     else:
-        pos_black_1 = (230, 225)
-        pos_red = (250, 240)
+        pos_red = (245, 240)
         pos_orange = (260, 255)
         pos_yellow = (275, 270)
         pos_green = (290, 285)
         pos_blue = (305, 300)
         pos_violet = (320, 315)
-        pos_black_2 = (335, 330)
     loop += 1
-
-    line_black_1 = [(0, pos_black_1[0]), (10, pos_black_1[0]), (20, pos_black_1[0]),(30, pos_black_1[1]),(40, pos_black_1[1]),(50, pos_black_1[1]), (60, pos_black_1[1]), (70, pos_black_1[1]), (80, pos_black_1[0]), (90, pos_black_1[0]), (100, pos_black_1[0]), (110, pos_black_1[0]), (120, pos_black_1[0]), (130, pos_black_1[1]), (140, pos_black_1[1]), (150, pos_black_1[1]), (160, pos_black_1[1]), (170, pos_black_1[1])]
-    line_black_skin_1 = pygame.Surface(surface)
-    line_black_skin_1.fill((0,0,0))
 
     line_red = [(0, pos_red[0]), (10, pos_red[0]), (20, pos_red[0]),(30, pos_red[1]),(40, pos_red[1]),(50, pos_red[1]), (60, pos_red[1]), (70, pos_red[1]), (80, pos_red[0]), (90, pos_red[0]), (100, pos_red[0]), (110, pos_red[0]), (120, pos_red[0]), (130, pos_red[1]), (140, pos_red[1]), (150, pos_red[1]), (160, pos_red[1]), (170, pos_red[1])]
     line_red_skin = pygame.Surface(surface)
@@ -65,18 +49,13 @@ while True:
     line_violet_skin = pygame.Surface(surface)
     line_violet_skin.fill((255,0,255))
 
-    line_black_2 = [(0, pos_black_2[0]), (10, pos_black_2[0]), (20, pos_black_2[0]),(30, pos_black_2[1]),(40, pos_black_2[1]),(50, pos_black_2[1]), (60, pos_black_2[1]), (70, pos_black_2[1]), (80, pos_black_2[0]), (90, pos_black_2[0]), (100, pos_black_2[0]), (110, pos_black_2[0]), (120, pos_black_2[0]), (130, pos_black_2[1]), (140, pos_black_2[1]), (150, pos_black_2[1]), (160, pos_black_2[1]), (170, pos_black_2[1])]
-    line_black_skin_2 = pygame.Surface(surface)
-    line_black_skin_2. fill((0,0,0))
-
     clock = pygame.time.Clock()
 
     clock.tick(5)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-    for pos in line_black_1:
-        screen.blit(line_black_skin_1, pos)
+    screen.fill((0,0,0))
     for pos in line_red:
         screen.blit(line_red_skin, pos)
     for pos in line_orange:
@@ -89,6 +68,4 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
-    for pos in line_black_2:
-        screen.blit(line_black_skin_2, pos)
     pygame.display.update()
