@@ -4,6 +4,7 @@ from pygame.locals import *
 pygame.init()
 screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Nyan Cat')
+clock = pygame.time.Clock()
 
 # Lines Color
 surface = (15, 15)
@@ -48,8 +49,6 @@ while True:
     line_violet = [(0, pos_violet[0]), (10, pos_violet[0]), (20, pos_violet[0]),(30, pos_violet[1]),(40, pos_violet[1]),(50, pos_violet[1]), (60, pos_violet[1]), (70, pos_violet[1]), (80, pos_violet[0]), (90, pos_violet[0]), (100, pos_violet[0]), (110, pos_violet[0]), (120, pos_violet[0]), (130, pos_violet[1]), (140, pos_violet[1]), (150, pos_violet[1]), (160, pos_violet[1]), (170, pos_violet[1])]
     line_violet_skin = pygame.Surface(surface)
     line_violet_skin.fill((255,0,255))
-
-    clock = pygame.time.Clock()
 
     clock.tick(5)
     for event in pygame.event.get():
