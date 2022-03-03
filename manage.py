@@ -1,5 +1,13 @@
 import pygame
 from pygame.locals import *
+from random import randint
+from time import sleep
+
+# Function
+def bomb_generator():
+    x = randint(250, 590)
+    y = randint(0, 590)
+    return (x//10 * 10, y//10 * 10)
 
 # init pygame
 pygame.init()
@@ -56,6 +64,10 @@ while True:
     line_violet_skin = pygame.Surface(surface)
     line_violet_skin.fill((255,0,255))
 
+#Bomb Spawn
+    bomb_pix = bomb_generator()
+    bomb_pix_skin = pygame.Surface((10,10))
+    bomb_pix_skin.fill((255,250,250))
 # Move Rainbow and Nyan Cat
     clock.tick(5)
     for event in pygame.event.get():
@@ -74,4 +86,14 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
+# Move Bomb Spawn
+    if loop % 10 == 0:
+        for pos in range(bomb_pix[0], 0, -1):
+            bomb_pix = (bomb_pix[0] - 10, bomb_pix[1])
+            bomb_pix_skin.fill((255,250,250))
+            screen.blit(bomb_pix_skin, bomb_pix)
+            sleep(0.2)
+            bomb_pix_skin.fill((0,0,0))
+            screen.blit(bomb_pix_skin, bomb_pix)
+            pygame.display.update()
     pygame.display.update()
