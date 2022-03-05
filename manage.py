@@ -1,5 +1,7 @@
 import pygame
 from pygame.locals import *
+from sys import exit
+from random import randint
 
 # init pygame
 pygame.init()
@@ -7,8 +9,34 @@ screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Nyan Cat')
 clock = pygame.time.Clock()
 
-nyan_cat = pygame.image.load(r'nyan_cat.png')
-nyan_cat_rect = nyan_cat.get_rect()
+#Nyan Sprite
+class Nyan(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.sprites = []
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat1.png'))
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat2.png'))
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat3.png'))
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat4.png'))
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat5.png'))
+        self.sprites.append(pygame.image.load(r'sprites/nyan_cat6.png'))
+        self.atual = 0
+        self.image = self.sprites[self.atual]
+        self.image = pygame.transform.scale(self.image, (270, 150))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = 100, 215
+
+    def update(self):
+        self.atual += 1
+        if self.atual >= len(self.sprites):
+            self.atual = 0
+        self.image = self.sprites[int(self.atual)]
+        self.image = pygame.transform.scale(self.image, (270, 150))
+
+
+sprites_nyan =pygame.sprite.Group()
+nyan = Nyan()
+sprites_nyan.add(nyan)
 
 # Music
 pygame.mixer.init()
@@ -96,11 +124,44 @@ while True:
     line_violet_skin.fill((255,0,255))
 
 # Move Rainbow and Nyan Cat and Bomb Spawn
-    clock.tick(4)
+    clock.tick(7)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-    screen.fill((0,0,0))
+            exit()
+
+    screen.fill((0,0,128))
+
+# Spawn bomb in the screen
+    if loop % 15 == 0:
+        bomb_pix_1_loop = bomb_pix_1[:]
+        bomb_pix3 = bomb_pix_1[:]
+    try:
+        for pos in bomb_pix3[0]:
+            screen.blit(bomb_pix_skin_1, (pos[0],pos[1]+480))
+        del (bomb_pix3[0])
+        for pos in bomb_pix_1_loop[0]:
+            screen.blit(bomb_pix_skin_1, pos)
+        del(bomb_pix_1_loop[0])
+    except:
+        pass
+    if loop % 16 == 0:
+        bomb_pix_2_loop = bomb_pix_2[:]
+        bomb_pix4 = bomb_pix_2[:]
+        bomb_pix5 = bomb_pix_2[:]
+    try:
+        for pos in bomb_pix5[0]:
+            screen.blit(bomb_pix_skin_1, (pos[0]-50,pos[1]+170))
+        del (bomb_pix5[0])
+        for pos in bomb_pix4[0]:
+            screen.blit(bomb_pix_skin_1, (pos[0]+50,pos[1]+300))
+        del (bomb_pix4[0])
+        for pos in bomb_pix_2_loop[0]:
+            screen.blit(bomb_pix_skin_2, pos)
+        del (bomb_pix_2_loop[0])
+    except:
+        pass
+
     for pos in line_red:
         screen.blit(line_red_skin, pos)
     for pos in line_orange:
@@ -113,22 +174,7 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
-    screen.blit(nyan_cat, (80, 190))
-# Spawn bomb in the screen
-    if loop % 15 == 0:
-        bomb_pix_1_loop = bomb_pix_1[:]
-    try:
-        for pos in bomb_pix_1_loop[0]:
-            screen.blit(bomb_pix_skin_1, pos)
-        del(bomb_pix_1_loop[0])
-    except:
-        pass
-    if loop % 16 == 0:
-        bomb_pix_2_loop = bomb_pix_2[:]
-    try:
-        for pos in bomb_pix_2_loop[0]:
-            screen.blit(bomb_pix_skin_2, pos)
-        del (bomb_pix_2_loop[0])
-    except:
-        pass
-    pygame.display.update()
+
+    sprites_nyan.draw(screen)
+    sprites_nyan.update()
+    pygame.display.flip()
