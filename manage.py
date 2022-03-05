@@ -1,13 +1,6 @@
 import pygame
 from pygame.locals import *
-from random import randint
 from time import sleep
-
-# Function
-def bomb_generator():
-    x = randint(250, 590)
-    y = randint(0, 590)
-    return (x//10 * 10, y//10 * 10)
 
 # init pygame
 pygame.init()
@@ -65,11 +58,11 @@ while True:
     line_violet_skin.fill((255,0,255))
 
 #Bomb Spawn
-    bomb_pix = bomb_generator()
-    bomb_pix_skin = pygame.Surface((10,10))
-    bomb_pix_skin.fill((255,250,250))
+    bomb_pix_1 = [(590, 50),(540, 50),(490, 50),(440, 50),(390, 50),(340, 50),(340, 50),(290, 50),(240, 50),(190, 50),(140, 50),(90, 50),(40, 50), (0, 50)] 
+    bomb_pix_skin_1 = pygame.Surface((10,10))
+    bomb_pix_skin_1.fill((255,250,250))
 # Move Rainbow and Nyan Cat
-    clock.tick(5)
+    clock.tick(4)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -86,14 +79,14 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
-# Move Bomb Spawn
-    if loop % 10 == 0:
-        for pos in range(bomb_pix[0], 0, -1):
-            bomb_pix = (bomb_pix[0] - 10, bomb_pix[1])
-            bomb_pix_skin.fill((255,250,250))
-            screen.blit(bomb_pix_skin, bomb_pix)
-            sleep(0.2)
-            bomb_pix_skin.fill((0,0,0))
-            screen.blit(bomb_pix_skin, bomb_pix)
-            pygame.display.update()
+# Spawn bomb in the screen
+    if loop % 12 == 0:
+        bomb_pix_1_loop = bomb_pix_1[:]
+    try:
+        screen.blit(bomb_pix_skin_1, bomb_pix_1_loop[0])
+        del(bomb_pix_1_loop[0])
+        print(bomb_pix_1_loop[0])
+    except:
+        pass
+        #bomb_pix_1_loop = bomb_pix_1[:]
     pygame.display.update()
