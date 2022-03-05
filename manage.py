@@ -71,5 +71,5 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
-    screen.blit(nyan_cat, (-380,5))
+    screen.blit(nyan_cat, (80, 190))
     pygame.display.update()
