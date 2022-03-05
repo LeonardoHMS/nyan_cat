@@ -6,6 +6,9 @@ screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Nyan Cat')
 clock = pygame.time.Clock()
 
+nyan_cat = pygame.image.load(r'nyan_cat.png')
+nyan_cat_rect = nyan_cat.get_rect()
+
 # Lines Color
 surface = (30, 15)
 pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0
@@ -68,4 +71,5 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
+    screen.blit(nyan_cat, (-380,5))
     pygame.display.update()
