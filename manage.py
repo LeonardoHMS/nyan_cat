@@ -43,7 +43,7 @@ pygame.mixer.music.load('nyan_cat_music.mp3')
 pygame.mixer.music.play()
 
 #Bomb Spawn, Valores: 3 Eixo X dps 2 Eixo Y para movimentos de explosões
-bomb_pix_1 = [
+bomb_pix = [
 ((580, 50),(590, 50),(600, 50),(590, 60),(590, 40)),
 ((510, 50),(570, 50),(540, 80),(540, 20)),
 ((480, 50),(490, 50),(500, 50),(490, 60),(490, 40)),
@@ -58,26 +58,9 @@ bomb_pix_1 = [
 ((10, 50),(70, 50),(40, 80),(40, 20)),
 ((0, 50),(10, 50),(0, 60),(0, 40))
 ]
-bomb_pix_skin_1 = pygame.Surface((10,10))
-bomb_pix_skin_1.fill((255,250,250))
+bomb_pix_skin = pygame.Surface((10,10))
+bomb_pix_skin.fill((255,250,250))
 
-bomb_pix_2 = [
-((580, 150),(590, 150),(600, 150),(590, 160),(590, 140)),
-((510, 150),(570, 150),(540, 180),(540, 120)),
-((480, 150),(490, 150),(500, 150),(490, 160),(490, 140)),
-((410, 150),(470, 150),(440, 180),(440, 120)),
-((380, 150),(390, 150),(400, 150),(390, 160),(390, 140)),
-((310, 150),(370, 150),(340, 180),(340, 120)),
-((280, 150),(290, 150),(300, 150),(290, 160),(290, 140)),
-((210, 150),(270, 150),(240, 180),(240, 120)),
-((180, 150),(190, 150),(200, 150),(190, 160),(190, 140)),
-((110, 150),(170, 150),(140, 180),(140, 120)),
-((80, 150),(90, 150),(100, 150),(90, 160),(90, 140)),
-((10, 150),(70, 150),(40, 180),(40, 120)),
-((0, 150),(10, 150),(0, 160),(0, 140))
-]
-bomb_pix_skin_2 = pygame.Surface((10,10))
-bomb_pix_skin_2.fill((255,250,250))
 # Lines Color
 surface = (30, 15)
 pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0
@@ -132,35 +115,27 @@ while True:
     screen.fill((0,0,128))
 
 # Spawn bomb in the screen
-    if loop % 15 == 0:
-        bomb_pix_1_loop = bomb_pix_1[:]
-        bomb_pix3 = bomb_pix_1[:]
+    if loop % 9 == 0:
+        bomb_pix1 = bomb_pix[:]
     try:
-        for pos in bomb_pix3[0]:
-            screen.blit(bomb_pix_skin_1, (pos[0],pos[1]+480))
-        del (bomb_pix3[0])
-        for pos in bomb_pix_1_loop[0]:
-            screen.blit(bomb_pix_skin_1, pos)
-        del(bomb_pix_1_loop[0])
+        for pos in bomb_pix1[0]:
+            screen.blit(bomb_pix_skin, pos)
+            screen.blit(bomb_pix_skin, (pos[0]+50,pos[1]+350))
+        del (bomb_pix1[0])
     except:
         pass
-    if loop % 16 == 0:
-        bomb_pix_2_loop = bomb_pix_2[:]
-        bomb_pix4 = bomb_pix_2[:]
-        bomb_pix5 = bomb_pix_2[:]
+    if loop % 14 == 0:
+        bomb_pix2 = bomb_pix[:]
     try:
-        for pos in bomb_pix5[0]:
-            screen.blit(bomb_pix_skin_1, (pos[0]-50,pos[1]+170))
-        del (bomb_pix5[0])
-        for pos in bomb_pix4[0]:
-            screen.blit(bomb_pix_skin_1, (pos[0]+50,pos[1]+300))
-        del (bomb_pix4[0])
-        for pos in bomb_pix_2_loop[0]:
-            screen.blit(bomb_pix_skin_2, pos)
-        del (bomb_pix_2_loop[0])
+        for pos in bomb_pix2[0]:
+            screen.blit(bomb_pix_skin, (pos[0]-50,pos[1]+270))
+            for pos in bomb_pix2[0]:
+                screen.blit(bomb_pix_skin, (pos[0]+50,pos[1]+480))
+                screen.blit(bomb_pix_skin, (pos[0]-50, pos[1]+100))
+        del (bomb_pix2[0])
     except:
         pass
-
+# Rainbow
     for pos in line_red:
         screen.blit(line_red_skin, pos)
     for pos in line_orange:
@@ -173,7 +148,7 @@ while True:
         screen.blit(line_blue_skin, pos)
     for pos in line_violet:
         screen.blit(line_violet_skin, pos)
-
+# Nyan
     sprites_nyan.draw(screen)
     sprites_nyan.update()
     pygame.display.flip()
