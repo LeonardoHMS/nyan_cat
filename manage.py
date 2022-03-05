@@ -7,6 +7,9 @@ screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Nyan Cat')
 clock = pygame.time.Clock()
 
+nyan_cat = pygame.image.load(r'nyan_cat.png')
+nyan_cat_rect = nyan_cat.get_rect()
+
 # Music
 pygame.mixer.init()
 pygame.mixer.music.load('nyan_cat_music.mp3')
