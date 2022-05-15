@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\cursoemvideo\nyan_cat\venv"
+VIRTUAL_ENV="C:\Users\Leonardo Mantovani\Documents\Github\nyan_cat\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
