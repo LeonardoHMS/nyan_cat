@@ -132,7 +132,7 @@ while True:
 
     screen.fill((0, 0, 128))
 
-# Spawn bomb in the screen
+# Spawn stars in the screen
     if len(bomb_pix1) == 0:
         bomb_pix1 = bomb_pix[:]
     for pos in bomb_pix1[0]:
@@ -141,7 +141,6 @@ while True:
         screen.blit(bomb_pix_skin, (pos[0] - 150, pos[1] + 300))  # 3º
         screen.blit(bomb_pix_skin, (pos[0] + 350, pos[1] + 350))  # 4º
         screen.blit(bomb_pix_skin, (pos[0] - 50, pos[1] + 480))  # 5º
-
     del (bomb_pix1[0])
 # Rainbow
     rainbow(pos_red, (255, 0, 0))
