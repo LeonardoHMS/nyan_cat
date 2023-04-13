@@ -91,9 +91,6 @@ pygame.mixer.init()
 pygame.mixer.music.load('nyan_cat_music.mp3')
 pygame.mixer.music.play()
 
-bomb_pix1 = []  # type: list
-
-
 # Lines Color
 pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0  # noqa
 while True:
@@ -119,7 +116,6 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()
-
     screen.fill((0, 0, 128))
 
 # Spawn stars in the screen

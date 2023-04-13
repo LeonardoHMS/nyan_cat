@@ -7,4 +7,4 @@
 ---
 * Nyan cat feito com Sprites
 * Arco-íris feito com pixels
-* Explosões feitas também com pixels
+* Estrelas feitas com pixels através de uma classe
