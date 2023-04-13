@@ -24,6 +24,32 @@ def rainbow(pos, color):
         screen.blit(line_skin, pos)
 
 
+class Stars():
+    def __init__(self, pos_x, pos_y):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.bomb_pix = []
+        self.bomb_pix_skin = pygame.Surface((10, 10))
+        self.bomb_pix_skin.fill((255, 250, 250))
+
+    def _list_pixels(self, pos_x, pos_y):
+        while pos_x > 0:
+            self.bomb_pix.append((
+                (pos_x, 50+pos_y), (pos_x+10, 50+pos_y), (pos_x+20, 50+pos_y), (pos_x+10, 60+pos_y), (pos_x+10, 40+pos_y) # noqa
+            ))
+            self.bomb_pix.append((
+                (pos_x-70, 50+pos_y), (pos_x-10, 50+pos_y), (pos_x-40, 80+pos_y), (pos_x-40, 20+pos_y) # noqa
+            ))
+            pos_x -= 100
+
+    def update(self):
+        if len(self.bomb_pix) == 0:
+            Stars._list_pixels(self, self.pos_x, self.pos_y)
+        for pos in self.bomb_pix[0]:
+            screen.blit(self.bomb_pix_skin, pos)
+        del (self.bomb_pix[0])
+
+
 # Nyan Sprite
 class Nyan(pygame.sprite.Sprite):
     def __init__(self):
@@ -49,6 +75,13 @@ class Nyan(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (270, 150))
 
 
+star_1 = Stars(680, 0)
+star_test = Stars(1920, 0)
+star_2 = Stars(830, 100)
+star_3 = Stars(720, 300)
+star_4 = Stars(980, 350)
+star_5 = Stars(850, 480)
+
 sprites_nyan = pygame.sprite.Group()  # type: ignore
 nyan = Nyan()
 sprites_nyan.add(nyan)
@@ -58,51 +91,8 @@ pygame.mixer.init()
 pygame.mixer.music.load('nyan_cat_music.mp3')
 pygame.mixer.music.play()
 
-# Bomb Spawn, Valores: 3 Eixo X dps 2 Eixo Y para movimentos de explosões
 bomb_pix1 = []  # type: list
-bomb_pix = [
-    (
-        (580, 50), (590, 50), (600, 50), (590, 60), (590, 40)
-    ),
-    (
-        (510, 50), (570, 50), (540, 80), (540, 20)
-    ),
-    (
-        (480, 50), (490, 50), (500, 50), (490, 60), (490, 40)
-    ),
-    (
-        (410, 50), (470, 50), (440, 80), (440, 20)
-    ),
-    (
-        (380, 50), (390, 50), (400, 50), (390, 60), (390, 40)
-    ),
-    (
-        (310, 50), (370, 50), (340, 80), (340, 20)
-    ),
-    (
-        (280, 50), (290, 50), (300, 50), (290, 60), (290, 40)
-    ),
-    (
-        (210, 50), (270, 50), (240, 80), (240, 20)
-    ),
-    (
-        (180, 50), (190, 50), (200, 50), (190, 60), (190, 40)
-    ),
-    (
-        (110, 50), (170, 50), (140, 80), (140, 20)
-    ),
-    (
-        (80, 50), (90, 50), (100, 50), (90, 60), (90, 40)
-    ),
-    (
-        (10, 50), (70, 50), (40, 80), (40, 20)
-    ),
-    (
-        (0, 50), (10, 50), (0, 60), (0, 40)
-    )
-]
-bomb_pix_skin = pygame.Surface((10, 10))
-bomb_pix_skin.fill((255, 250, 250))
+
 
 # Lines Color
 pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0  # noqa
@@ -133,15 +123,13 @@ while True:
     screen.fill((0, 0, 128))
 
 # Spawn stars in the screen
-    if len(bomb_pix1) == 0:
-        bomb_pix1 = bomb_pix[:]
-    for pos in bomb_pix1[0]:
-        screen.blit(bomb_pix_skin, pos)  # 1º
-        screen.blit(bomb_pix_skin, (pos[0] + 250, pos[1] + 100))  # 2º
-        screen.blit(bomb_pix_skin, (pos[0] - 150, pos[1] + 300))  # 3º
-        screen.blit(bomb_pix_skin, (pos[0] + 350, pos[1] + 350))  # 4º
-        screen.blit(bomb_pix_skin, (pos[0] - 50, pos[1] + 480))  # 5º
-    del (bomb_pix1[0])
+    star_1.update()
+    star_2.update()
+    star_3.update()
+    star_4.update()
+    star_5.update()
+    star_test.update()
+
 # Rainbow
     rainbow(pos_red, (255, 0, 0))
     rainbow(pos_orange, (255, 140, 0))
@@ -149,6 +137,7 @@ while True:
     rainbow(pos_green, (0, 255, 0))
     rainbow(pos_blue, (0, 0, 255))
     rainbow(pos_violet, (255, 0, 255))
+
 # Nyan
     sprites_nyan.draw(screen)
     sprites_nyan.update()
