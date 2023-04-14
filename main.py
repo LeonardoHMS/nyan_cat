@@ -76,7 +76,6 @@ class Nyan(pygame.sprite.Sprite):
 
 
 star_1 = Stars(680, 0)
-star_test = Stars(1920, 0)
 star_2 = Stars(830, 100)
 star_3 = Stars(720, 300)
 star_4 = Stars(980, 350)
@@ -110,7 +109,7 @@ while True:
         pos_violet = (320, 315)  # type: ignore
     loop += 1
 
-# Move Rainbow and Nyan Cat and Bomb Spawn
+# Move Rainbow, Nyan and Stars
     clock.tick(8)
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -124,7 +123,6 @@ while True:
     star_3.update()
     star_4.update()
     star_5.update()
-    star_test.update()
 
 # Rainbow
     rainbow(pos_red, (255, 0, 0))
