@@ -4,7 +4,9 @@ import pygame
 
 # init pygame
 pygame.init()
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((800, 600))
+pygame_icon = pygame.image.load(r'static\nyan.ico')
+pygame.display.set_icon(pygame_icon)
 pygame.display.set_caption('Nyan Cat')
 clock = pygame.time.Clock()
 
