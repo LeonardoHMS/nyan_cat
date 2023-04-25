@@ -52,7 +52,7 @@ class Stars():
         del (self.bomb_pix[0])
 
 
-# Nyan Sprite
+# Nyan Sprites
 class Nyan(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
