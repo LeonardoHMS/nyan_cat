@@ -1,6 +1,7 @@
-from pygame.locals import QUIT
 from sys import exit
+
 import pygame
+from pygame.locals import QUIT
 
 # init pygame
 pygame.init()
@@ -112,7 +113,7 @@ while True:
     loop += 1
 
 # Move Rainbow, Nyan and Stars
-    clock.tick(8)
+    clock.tick(16)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
