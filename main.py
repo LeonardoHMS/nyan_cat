@@ -38,10 +38,10 @@ class Stars():
     def _list_pixels(self, pos_x, pos_y):
         while pos_x > 0:
             self.bomb_pix.append((
-                (pos_x, 50+pos_y), (pos_x+10, 50+pos_y), (pos_x+20, 50+pos_y), (pos_x+10, 60+pos_y), (pos_x+10, 40+pos_y) # noqa
+                (pos_x, 50+pos_y), (pos_x+10, 50+pos_y), (pos_x+20, 50+pos_y), (pos_x+10, 60+pos_y), (pos_x+10, 40+pos_y)
             ))
             self.bomb_pix.append((
-                (pos_x-70, 50+pos_y), (pos_x-10, 50+pos_y), (pos_x-40, 80+pos_y), (pos_x-40, 20+pos_y) # noqa
+                (pos_x-70, 50+pos_y), (pos_x-10, 50+pos_y), (pos_x-40, 80+pos_y), (pos_x-40, 20+pos_y)
             ))
             pos_x -= 100
 
@@ -84,7 +84,7 @@ star_3 = Stars(720, 300)
 star_4 = Stars(980, 350)
 star_5 = Stars(850, 480)
 
-sprites_nyan = pygame.sprite.Group()  # type: ignore
+sprites_nyan = pygame.sprite.Group()
 nyan = Nyan()
 sprites_nyan.add(nyan)
 
@@ -94,22 +94,22 @@ pygame.mixer.music.load('nyan_cat_music.mp3')
 pygame.mixer.music.play()
 
 # Lines Color
-pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0  # noqa
+pos_red = pos_orange = pos_yellow = pos_green = pos_blue = pos_violet = loop = 0
 while True:
     if loop % 2 == 0:
-        pos_red = (240, 245)  # type: ignore
-        pos_orange = (255, 260)  # type: ignore
-        pos_yellow = (270, 275)  # type: ignore
-        pos_green = (285, 290)  # type: ignore
-        pos_blue = (300, 305)  # type: ignore
-        pos_violet = (315, 320)  # type: ignore
+        pos_red = (240, 245)
+        pos_orange = (255, 260)
+        pos_yellow = (270, 275)
+        pos_green = (285, 290)
+        pos_blue = (300, 305)
+        pos_violet = (315, 320)
     else:
-        pos_red = (245, 240)  # type: ignore
-        pos_orange = (260, 255)  # type: ignore
-        pos_yellow = (275, 270)  # type: ignore
-        pos_green = (290, 285)  # type: ignore
-        pos_blue = (305, 300)  # type: ignore
-        pos_violet = (320, 315)  # type: ignore
+        pos_red = (245, 240)
+        pos_orange = (260, 255)
+        pos_yellow = (275, 270)
+        pos_green = (290, 285)
+        pos_blue = (305, 300)
+        pos_violet = (320, 315)
     loop += 1
 
 # Move Rainbow, Nyan and Stars
